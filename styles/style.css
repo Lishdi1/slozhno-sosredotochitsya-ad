@@ -327,6 +327,11 @@
     flex-direction: row;
   }
 
+  /* Пропорция колонок aside-секций по макету (заголовок уже) */
+  .section_aside {
+    grid-template-columns: 315fr 649fr;
+  }
+
   /* Карточки «Что снижает концентрацию» выстраиваются в три колонки */
   .section__content_columns {
     grid-template-columns: repeat(3, 1fr);
