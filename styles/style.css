@@ -171,6 +171,12 @@
 .section__title {
   color: var(--accent-color);
   font-weight: 700;
+  font-size: 28px;
+}
+
+/* Заголовок галереи — в плашке, обычного размера */
+.gallery__title {
+  font-weight: 700;
 }
 
 .section__content {
