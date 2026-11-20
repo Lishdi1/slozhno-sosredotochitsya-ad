@@ -1,5 +1,320 @@
-/* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
+/* ============================================================
+   Основные стили и основная (тёмная, «неон») тема. Mobile first.
+   ============================================================ */
 
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  color: var(--text-color);
+  font-family: var(--main-font);
+  font-size: var(--base-font-size);
+  line-height: var(--line-height);
+  background-color: var(--bg-color);
+  background-image: var(--cover-image);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+
+/* ---------- Декоративные уголки (шапка и подвал) ---------- */
+
+.decorated-zone {
+  position: relative;
+}
+
+.decorated-zone::before,
+.decorated-zone::after {
+  content: '';
+  position: absolute;
+  inline-size: 25px;
+  block-size: 25px;
+}
+
+.decorated-zone::before {
+  inset-block-start: var(--page-padding);
+  inset-inline-end: var(--page-padding);
+  border-block-start: 1px solid var(--accent-color);
+  border-inline-end: 1px solid var(--accent-color);
+}
+
+.decorated-zone::after {
+  inset-block-end: var(--page-padding);
+  inset-inline-start: var(--page-padding);
+  border-block-end: 1px solid var(--accent-color);
+  border-inline-start: 1px solid var(--accent-color);
+}
+
+/* ---------- Крупный заголовок (шапка и подвал) ---------- */
+
+.title {
+  color: var(--title-color);
+  font-weight: 700;
+  font-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  line-height: 0.825;
+}
+
+/* ---------- Декоративная подложка текста ---------- */
+
+.title-decor {
+  background-color: var(--decor-color);
+  color: var(--decor-text-color);
+}
+
+/* ============================================================
+   Шапка
+   ============================================================ */
+
+.header {
+  block-size: 100vh;
+  min-block-size: 668px;
+  padding: var(--page-padding);
+  display: grid;
+  grid-template-rows: 1fr min-content 1fr;
+  align-items: center;
+}
+
+/* REC — декоративный элемент, виден только в тёмной теме */
+.header__rec {
+  position: absolute;
+  inset-block-start: var(--page-padding);
+  inset-inline-end: calc(var(--page-padding) + 9px);
+  display: block;
+  color: var(--accent-color);
+  line-height: 25px;
+  text-transform: uppercase;
+}
+
+.header__rec::after {
+  content: '';
+  display: inline-block;
+  inline-size: 9px;
+  block-size: 9px;
+  margin-inline-start: 8px;
+  margin-block-end: 2px;
+  border-radius: 50%;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 4px 2px var(--accent-color);
+  vertical-align: middle;
+}
+
+/* Меню выбора темы */
+.header__theme-menu {
+  grid-row: 1;
+  justify-self: end;
+  align-self: center;
+}
+
+.header__theme-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.header__theme-menu-button {
+  border: none;
+  border-block-end: 1px solid transparent;
+  outline: 1px solid transparent;
+  background-color: transparent;
+  color: var(--accent-color);
+  padding-block: 2px;
+  padding-inline: 13px;
+  line-height: 18px;
+  text-transform: lowercase;
+  transition: outline-color 0.2s;
+}
+
+.header__theme-menu-button:hover {
+  outline-color: color-mix(in srgb, var(--accent-color) 40%, transparent);
+}
+
+.header__theme-menu-button:focus {
+  outline: 1px solid transparent;
+}
+
+.header__theme-menu-button:focus-visible {
+  border-block-end-color: var(--accent-color);
+}
+
+.header__theme-menu-button_active,
+.header__theme-menu-button:disabled {
+  outline-color: var(--accent-color);
+  pointer-events: none;
+}
+
+/* Заголовок и подзаголовок шапки */
+.header__title {
+  grid-row: 2;
+  text-shadow: 4px 4px 0 var(--decor-color);
+}
+
+.header__description {
+  grid-row: 3;
+  align-self: center;
+  font-weight: 700;
+}
+
+/* ============================================================
+   Основной контент
+   ============================================================ */
+
+.content {
+  display: grid;
+  gap: var(--section-gap);
+  padding-block: 40px;
+  padding-inline: var(--page-padding);
+}
+
+.section {
+  display: grid;
+  gap: var(--content-gap);
+}
+
+.section__title {
+  color: var(--accent-color);
+  font-weight: 700;
+}
+
+.section__content {
+  display: grid;
+  gap: var(--content-gap);
+}
+
+/* Карточка с текстом */
+.card {
+  display: grid;
+  gap: 10px;
+}
+
+.card__title {
+  font-weight: 700;
+}
+
+.card__title_thin {
+  font-weight: 400;
+}
+
+/* Ссылка в тексте */
+.link {
+  text-decoration: none;
+  text-shadow: 1px 1px 0 var(--accent-color);
+  border-block-end: 1px solid transparent;
+}
+
+.link:hover {
+  border-block-end-color: currentColor;
+}
+
+.link:focus {
+  outline: none;
+}
+
+.link:focus-visible {
+  outline: 1px solid currentColor;
+}
+
+/* ---------- Галерея ---------- */
+
+.gallery {
+  display: grid;
+  gap: var(--content-gap);
+}
+
+.gallery__image {
+  display: block;
+  inline-size: 100%;
+  block-size: auto;
+  object-fit: cover;
+  object-position: center;
+}
+
+/* ============================================================
+   Подвал
+   ============================================================ */
+
+.footer {
+  block-size: 100vh;
+  min-block-size: 668px;
+  padding: var(--page-padding);
+  display: grid;
+  place-items: center;
+}
+
+.footer__title {
+  text-align: center;
+  text-shadow: 2px 2px 0 var(--decor-color);
+}
+
+/* ============================================================
+   Планшет: ширина экрана больше 768px
+   ============================================================ */
+
+@media (width >= 768px) {
+  :root {
+    --page-padding: 20px;
+    --section-gap: 80px;
+  }
+
+  .title {
+    font-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+  }
+
+  .content {
+    padding-block: 60px;
+  }
+
+  /* Подзаголовок шапки уходит вправо */
+  .header__description {
+    justify-self: end;
+    max-inline-size: 50%;
+  }
+
+  /* Секции «заголовок слева — контент справа» */
+  .section_aside {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .section_aside .section__title {
+    grid-column: 1;
+  }
+
+  .section_aside .section__content {
+    grid-column: 2;
+  }
+
+  /* Галерея превращается в сетку */
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .gallery__image {
+    block-size: 100%;
+  }
+
+  .gallery__item_wide {
+    grid-column: span 2;
+  }
+
+  .gallery__item_tall {
+    grid-row: span 2;
+  }
+}
+
+/* ============================================================
+   Десктоп: ширина экрана больше 1024px
+   ============================================================ */
+
+@media (width >= 1024px) {
+  /* Меню темы становится горизонтальным и уходит наверх по центру */
+  .header__theme-menu {
+    justify-self: center;
+    align-self: start;
+  }
+
+  .header__theme-menu-list {
+    flex-direction: row;
+  }
+
+  /* Карточки «Что снижает концентрацию» выстраиваются в три колонки */
+  .section__content_columns {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
